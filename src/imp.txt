@@ -1,0 +1,34 @@
+    <KeyboardAvoidingView behavior="padding">
+
+            <View style={styles.container}>
+
+                <TextInput
+                placeholder='Make a todo'
+                placeholderTextColor='black'
+                keyboardType="email-address"
+                autoCapitalize="none"
+                style={styles.input}
+                value={this.state.todo}
+                onChangeText={todo => this.setState({todo})}
+                ref= {(ref) => { this.todoInput=ref } }
+                />
+
+                { this.state.isButtonVisible ?
+
+                  <TouchableOpacity style={ styles.buttonContainer} onPress={() => { this.submit()} }>
+                    <Text style={styles.buttonText}> Make </Text>
+                  </TouchableOpacity>
+                      :
+                  <TouchableOpacity style={ styles.buttonContainer} onPress={() => { this.editPusher()} }>
+                    <Text style={styles.buttonText}> Edit </Text>
+                  </TouchableOpacity>
+                }
+
+            </View>
+
+
+            <View style={styles.listview}>
+              <ListView  todoList={this.state.currArray} delete={ this.handleDelete.bind(this) } edit={ this.handleEdit.bind(this) }/>
+            </View>
+
+    </KeyboardAvoidingView>
